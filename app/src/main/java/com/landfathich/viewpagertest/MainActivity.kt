@@ -1,9 +1,8 @@
 package com.landfathich.viewpagertest
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.landfathich.viewpagertest.databinding.ActivityMainBinding
 
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         // передаем список в адаптер
         pagerAdapter.setItems(pagerItems)
 
-        binding.viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        binding.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
                 // в этом методе мы можем проверить состояние ViewPager
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
-                positionOffsetPixels: Int
+                positionOffsetPixels: Int,
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 // этот метод возвращает позицию и скролл
@@ -65,6 +64,12 @@ class MainActivity : AppCompatActivity() {
                 // этот метод возвращает текущую страницу
             }
         })
+
+        binding.viewPager2.setPageTransformer { page, position ->
+            val pagerHeight = page.height
+            page.findViewById<TextView>(R.id.text_view).translationY =
+                -position * (pagerHeight / 2) // эффект параллакса
+        }
     }
 }
 
