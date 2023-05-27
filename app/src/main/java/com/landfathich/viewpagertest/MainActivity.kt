@@ -2,7 +2,9 @@ package com.landfathich.viewpagertest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.landfathich.viewpagertest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +13,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
+
+        // сделает viewpager2 вертикальным
+        binding.viewPager2.orientation = ViewPager2.ORIENTATION_VERTICAL
 
         // создаем адаптер
         val pagerAdapter = ViewPagerAdapter()
@@ -39,6 +44,27 @@ class MainActivity : AppCompatActivity() {
 
         // передаем список в адаптер
         pagerAdapter.setItems(pagerItems)
+
+        binding.viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                // в этом методе мы можем проверить состояние ViewPager
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                // этот метод возвращает позицию и скролл
+            }
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                // этот метод возвращает текущую страницу
+            }
+        })
     }
 }
 
