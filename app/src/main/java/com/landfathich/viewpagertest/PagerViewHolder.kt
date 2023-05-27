@@ -2,13 +2,15 @@ package com.landfathich.viewpagertest
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.landfathich.viewpagertest.databinding.ItemBinding
 
-class PagerViewHolder(private val binding: View) : RecyclerView.ViewHolder(binding.root) {
+class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     // в этом методе мы передаем данные из PagerItem в нашу верстку item.xml
-    fun onBind(item: PagerItem) {
+    fun onBind(item: PagerItem, itemBinding: ItemBinding) {
         // корневой элемент item.xml
-        binding.container.setBackgroundColor(item.color)
+        itemBinding.container.setBackgroundColor(item.color)
         // текстовое поле
-        binding.textView.text = item.text
+        itemBinding.textView.text = item.text
+        itemBinding.textView.setTextColor(item.textColor)
     }
 }
