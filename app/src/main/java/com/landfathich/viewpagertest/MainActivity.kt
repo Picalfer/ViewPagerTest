@@ -21,19 +21,19 @@ class MainActivity : AppCompatActivity() {
         // создаем список элементов, который передадим в адаптер
         val pagerItems = listOf<PagerItem>(
             PagerItem(
-                ContextCompat.getColor(this, R.color.black),
-                "Black",
-                ContextCompat.getColor(this, R.color.white)
+                getColor(R.color.soft_green),
+                "Green",
+                getColor(R.color.black)
             ),
             PagerItem(
-                ContextCompat.getColor(this, R.color.white),
-                "White",
-                ContextCompat.getColor(this, R.color.black)
+                getColor(R.color.soft_red),
+                "Red",
+                getColor(R.color.black)
             ),
             PagerItem(
-                ContextCompat.getColor(this, R.color.black),
-                "Black",
-                ContextCompat.getColor(this, R.color.white)
+                getColor(R.color.soft_yellow),
+                "Yellow",
+                getColor(R.color.black)
             )
         )
 
