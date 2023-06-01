@@ -1,11 +1,10 @@
 package com.landfathich.viewpagertest
 
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.cardview.widget.CardView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.landfathich.viewpagertest.adapters.ViewPagerAdapter
 import com.landfathich.viewpagertest.adapters.ViewPagerCityAdapter
@@ -18,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
 
         setPhotoViewPager()
